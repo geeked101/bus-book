@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // ✅ Correct backend URL
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -34,10 +34,10 @@ api.interceptors.response.use(
   },
   (error) => {
     console.error(`❌ API Error: ${error.response?.status} ${error.config?.url}`);
-    
-    
+
+
     let userMessage = 'An unexpected error occurred';
-    
+
     if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
       userMessage = 'Request timed out. The server is taking too long to respond.';
     } else if (error.response?.status === 401) {
@@ -71,8 +71,8 @@ export const testBackendConnection = async () => {
     const response = await api.get('/health');
     return { success: true, data: response.data };
   } catch (error) {
-    return { 
-      success: false, 
+    return {
+      success: false,
       error: error.userMessage || 'Cannot connect to backend server',
       details: `Backend URL: ${API_BASE_URL}`
     };
@@ -86,8 +86,8 @@ export const busesAPI = {
       const response = await api.get('/buses');
       return { success: true, data: response.data };
     } catch (error) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.userMessage || 'Error fetching buses. Please try again.'
       };
     }
@@ -100,21 +100,21 @@ export const busesAPI = {
       let buses = response.data;
 
       if (filters.from) {
-        buses = buses.filter(bus => 
+        buses = buses.filter(bus =>
           bus.route.from.toLowerCase().includes(filters.from.toLowerCase())
         );
       }
-      
+
       if (filters.to) {
-        buses = buses.filter(bus => 
+        buses = buses.filter(bus =>
           bus.route.to.toLowerCase().includes(filters.to.toLowerCase())
         );
       }
 
       return { success: true, data: buses };
     } catch (error) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.userMessage || 'Error searching buses. Please try again.'
       };
     }
@@ -125,8 +125,8 @@ export const busesAPI = {
       const response = await api.get(`/buses/${id}`);
       return { success: true, data: response.data };
     } catch (error) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.userMessage || 'Error fetching bus details.'
       };
     }
@@ -137,8 +137,8 @@ export const busesAPI = {
       const response = await api.get(`/buses/${busId}/seats?date=${date}`);
       return { success: true, data: response.data };
     } catch (error) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.userMessage || 'Error fetching bus seats.'
       };
     }
@@ -152,8 +152,8 @@ export const authAPI = {
       const response = await api.post('/auth/register', userData);
       return { success: true, data: response.data };
     } catch (error) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.userMessage || 'Registration failed. Please try again.'
       };
     }
@@ -164,8 +164,8 @@ export const authAPI = {
       const response = await api.post('/auth/login', credentials);
       return { success: true, data: response.data };
     } catch (error) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.userMessage || 'Login failed. Please check your credentials.'
       };
     }
@@ -176,8 +176,8 @@ export const authAPI = {
       const response = await api.post('/auth/google', { token });
       return { success: true, data: response.data };
     } catch (error) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.userMessage || 'Google Login failed. Please try again.'
       };
     }
@@ -191,8 +191,8 @@ export const bookingsAPI = {
       const response = await api.post('/bookings', bookingData);
       return { success: true, data: response.data };
     } catch (error) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.userMessage || 'Booking failed. Please try again.'
       };
     }
@@ -203,8 +203,8 @@ export const bookingsAPI = {
       const response = await api.get('/bookings/user');
       return { success: true, data: response.data };
     } catch (error) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.userMessage || 'Error fetching bookings.'
       };
     }
@@ -215,8 +215,8 @@ export const bookingsAPI = {
       const response = await api.delete(`/bookings/${id}`);
       return { success: true, data: response.data };
     } catch (error) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.userMessage || 'Cancellation failed.'
       };
     }

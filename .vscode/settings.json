@@ -1,0 +1,10 @@
+{
+    "rust-analyzer.check.command": "clippy",
+    "typescript.preferences.includePackageJsonAutoImports": "auto",
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "files.associations": {
+        "*.rs": "rust"
+    }
+}

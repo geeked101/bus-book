@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Start MongoDB",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/database/start-mongodb.js",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Initialize Database",
+            "type": "node",
+            "request": "launch", 
+            "program": "${workspaceFolder}/database/init-mongodb.js",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Backend",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/backend/target/debug/bus-booking-backend.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}/backend"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Start Full Stack",
+            "configurations": ["Start MongoDB", "Debug Backend"]
+        }
+    ]
+}

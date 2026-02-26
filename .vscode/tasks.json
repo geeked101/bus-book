@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start MongoDB Service",
+            "type": "shell",
+            "command": "mongod",
+            "args": [
+                "--dbpath",
+                "${workspaceFolder}/database/mongo-data",
+                "--logpath",
+                "${workspaceFolder}/database/mongodb.log"
+            ],
+            "group": "build",
+            "presentation": {
+                "panel": "new",
+                "echo": true,
+                "reveal": "always"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Initialize MongoDB Database",
+            "type": "shell",
+            "command": "node",
+            "args": ["${workspaceFolder}/database/init-mongodb.js"],
+            "group": "build",
+            "presentation": {
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Start Backend",
+            "type": "shell",
+            "command": "cd backend && cargo run",
+            "group": "build",
+            "presentation": {
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Start Frontend",
+            "type": "shell",
+            "command": "cd frontend && npm start",
+            "group": "build",
+            "presentation": {
+                "panel": "new"
+            }
+        }
+    ]
+}

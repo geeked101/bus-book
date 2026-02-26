@@ -1,0 +1,237 @@
+.bus-seats-container {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/seats-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 2rem 1rem;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #ffffff;
+}
+
+.bus-info {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  margin: 0 auto 2rem auto;
+  max-width: 800px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #ef4444;
+}
+
+.bus-info h2 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  font-size: 1.75rem;
+}
+
+.route-info {
+  display: flex;
+  gap: 2rem;
+  color: #7f8c8d;
+}
+
+.seats-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  margin: 0 auto 2rem auto;
+  max-width: 800px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.seats-container h3 {
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.bus-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.driver-section {
+  background: #34495e;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.seats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 400px;
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #bdc3c7;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.seat.available {
+  background: #ecf0f1;
+  border-color: #bdc3c7;
+}
+
+.seat.available:hover {
+  background: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+.seat.selected {
+  background: #27ae60;
+  color: white;
+  border-color: #27ae60;
+}
+
+.seat.occupied {
+  background: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
+  cursor: not-allowed;
+}
+
+.seat.premium {
+  border-color: #f39c12;
+}
+
+.seats-legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.legend-color.available {
+  background: #ecf0f1;
+  border: 2px solid #bdc3c7;
+}
+
+.legend-color.selected {
+  background: #27ae60;
+}
+
+.legend-color.occupied {
+  background: #e74c3c;
+}
+
+.booking-summary {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  max-width: 800px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 4px solid #10b981;
+}
+
+.booking-summary h3 {
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.summary-details {
+  margin-bottom: 1.5rem;
+}
+
+.summary-details p {
+  margin: 0.5rem 0;
+}
+
+.total-price {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #10b981;
+  text-shadow: 0 2px 10px rgba(16, 185, 129, 0.2);
+}
+
+.proceed-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 1.25rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+
+.proceed-btn:hover:not(:disabled) {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+}
+
+.proceed-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .route-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .seats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .seats-legend {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.legend-color.premium {
+  background: #f39c12;
+  border: 2px solid #e67e22;
+}
+
+.seat.premium {
+  border-color: #f39c12;
+  background: #fef9e7;
+}
+
+.seat.premium.available:hover {
+  background: #f39c12;
+  color: white;
+}
